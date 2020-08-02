@@ -14,10 +14,10 @@ class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.blueGrey,
       appBar: AppBar(
-        title: Text("Converter"),
-        backgroundColor: Colors.amber,
+        title: Text("Exchange"),
+        backgroundColor: Colors.blueAccent,
         centerTitle: true,
       ),
       body: FutureBuilder(
@@ -42,8 +42,8 @@ class HomeState extends State<Home> {
                         textAlign: TextAlign.center,
                       ));
                 } else {
-                  var exchange = getExchange(snapshot);
-                  return form(exchange);
+
+                  return form(getExchange(snapshot));
                 }
             }
           }),

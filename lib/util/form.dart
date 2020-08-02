@@ -5,14 +5,17 @@ Widget form(Exchange exchange){
   final realController = TextEditingController();
   final dolarController = TextEditingController();
   final euroController = TextEditingController();
+  final libraController = TextEditingController();
 
   double dollar_buy = exchange.dollar;
   double euro_buy = exchange.euro;
+  double libra_buy = exchange.libra;
 
   void _clearAll() {
     realController.text = "";
     dolarController.text = "";
     euroController.text = "";
+    libraController.text = "";
   }
 
   void _realChanged(String text) {
@@ -23,6 +26,7 @@ Widget form(Exchange exchange){
     double real = double.parse(text);
     dolarController.text = (real / dollar_buy).toStringAsFixed(2);
     euroController.text = (real / euro_buy).toStringAsFixed(2);
+    libraController.text = (real / libra_buy).toStringAsFixed(2);
   }
 
   void _dolarChanged(String text) {
@@ -33,6 +37,7 @@ Widget form(Exchange exchange){
     double dolar = double.parse(text);
     realController.text = (dolar * dollar_buy).toStringAsFixed(2);
     euroController.text = (dolar * dollar_buy / euro_buy).toStringAsFixed(2);
+    libraController.text = (dolar * dollar_buy / libra_buy).toStringAsFixed(2);
   }
 
   void _euroChanged(String text) {
@@ -43,30 +48,48 @@ Widget form(Exchange exchange){
     double euro = double.parse(text);
     realController.text = (euro * euro_buy).toStringAsFixed(2);
     dolarController.text = (euro * euro_buy / dollar_buy).toStringAsFixed(2);
+    libraController.text = (euro * euro_buy / libra_buy).toStringAsFixed(2);
+  }
+
+  void _libraChanged(String text) {
+    if (text.isEmpty) {
+      _clearAll();
+      return;
+    }
+    double libra = double.parse(text);
+    realController.text = (libra * libra_buy).toStringAsFixed(2);
+    dolarController.text = (libra * libra_buy / dollar_buy).toStringAsFixed(2);
+    euroController.text = (libra * libra_buy / euro_buy).toStringAsFixed(2);
   }
 
 
   return SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          Icon(Icons.monetization_on,
+          Icon(Icons.account_balance,
               size: 150.0, color: Colors.amber),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: buildTextField(
-                "Reals", "R\$", realController, _realChanged),
+                "Real", "R\$", realController, _realChanged),
           ),
           Divider(),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: buildTextField(
-                "Dollars", "US\$", dolarController, _dolarChanged),
+                "Dollar", "US\$", dolarController, _dolarChanged),
           ),
           Divider(),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: buildTextField(
-                "Euros", "€", euroController, _euroChanged),
+                "Euro", "€", euroController, _euroChanged),
+          ),
+          Divider(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: buildTextField(
+                "Pound", "£", libraController, _libraChanged),
           ),
         ],
       ));
