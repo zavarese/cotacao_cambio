@@ -14,10 +14,10 @@ class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text("Exchange"),
-        backgroundColor: Colors.blueAccent,
+        title: Text("Câmbio"),
+        backgroundColor: Colors.deepOrangeAccent,
         centerTitle: true,
       ),
       body: FutureBuilder(
@@ -25,20 +25,19 @@ class HomeState extends State<Home> {
           //snapshot of the context/getData
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
-              case ConnectionState.none:
               case ConnectionState.waiting:
                 return Center(
                     child: Text(
-                      "Loading...",
-                      style: TextStyle(color: Colors.amber, fontSize: 25.0),
+                      "Carregando...",
+                      style: TextStyle(color: Colors.deepOrange, fontSize: 25.0),
                       textAlign: TextAlign.center,
                     ));
               default:
                 if (snapshot.hasError) {
                   return Center(
                       child: Text(
-                        "Error :(",
-                        style: TextStyle(color: Colors.amber, fontSize: 25.0),
+                        "Erro :(",
+                        style: TextStyle(color: Colors.deepOrangeAccent, fontSize: 25.0),
                         textAlign: TextAlign.center,
                       ));
                 } else {

@@ -1,21 +1,28 @@
 import 'package:cotacaocambio/util/exchange.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 Widget form(Exchange exchange){
-  final realController = TextEditingController();
-  final dolarController = TextEditingController();
-  final euroController = TextEditingController();
-  final libraController = TextEditingController();
+  final realContr = TextEditingController();
+  final dolarContr = TextEditingController();
+  final euroContr = TextEditingController();
+  final libraContr = TextEditingController();
+  final pesoContr = TextEditingController();
 
-  double dollar_buy = exchange.dollar;
-  double euro_buy = exchange.euro;
-  double libra_buy = exchange.libra;
+  final formatter = NumberFormat("#,##0.00", "pt_BR");
+
+  double dolar_compra = exchange.dolar;
+  double euro_compra = exchange.euro;
+  double libra_compra = exchange.libra;
+  double peso_compra = exchange.peso;
 
   void _clearAll() {
-    realController.text = "";
-    dolarController.text = "";
-    euroController.text = "";
-    libraController.text = "";
+    realContr.text = "";
+    dolarContr.text = "";
+    euroContr.text = "";
+    libraContr.text = "";
+    pesoContr.text = "";
   }
 
   void _realChanged(String text) {
@@ -23,10 +30,16 @@ Widget form(Exchange exchange){
       _clearAll();
       return;
     }
+
+    text = text.replaceAll('.','');
+    text = text.replaceAll(',','.');
+
     double real = double.parse(text);
-    dolarController.text = (real / dollar_buy).toStringAsFixed(2);
-    euroController.text = (real / euro_buy).toStringAsFixed(2);
-    libraController.text = (real / libra_buy).toStringAsFixed(2);
+
+    dolarContr.text = formatter.format(real / dolar_compra);
+    euroContr.text = formatter.format(real / euro_compra);
+    libraContr.text = formatter.format(real / libra_compra);
+    pesoContr.text = formatter.format(real / peso_compra);
   }
 
   void _dolarChanged(String text) {
@@ -34,10 +47,15 @@ Widget form(Exchange exchange){
       _clearAll();
       return;
     }
+
+    text = text.replaceAll('.','');
+    text = text.replaceAll(',','.');
+
     double dolar = double.parse(text);
-    realController.text = (dolar * dollar_buy).toStringAsFixed(2);
-    euroController.text = (dolar * dollar_buy / euro_buy).toStringAsFixed(2);
-    libraController.text = (dolar * dollar_buy / libra_buy).toStringAsFixed(2);
+    realContr.text = formatter.format(dolar * dolar_compra);
+    euroContr.text = formatter.format(dolar * dolar_compra / euro_compra);
+    libraContr.text = formatter.format(dolar * dolar_compra / libra_compra);
+    pesoContr.text = formatter.format(dolar * dolar_compra / peso_compra);
   }
 
   void _euroChanged(String text) {
@@ -45,10 +63,15 @@ Widget form(Exchange exchange){
       _clearAll();
       return;
     }
+
+    text = text.replaceAll('.','');
+    text = text.replaceAll(',','.');
+
     double euro = double.parse(text);
-    realController.text = (euro * euro_buy).toStringAsFixed(2);
-    dolarController.text = (euro * euro_buy / dollar_buy).toStringAsFixed(2);
-    libraController.text = (euro * euro_buy / libra_buy).toStringAsFixed(2);
+    realContr.text = formatter.format(euro * euro_compra);
+    dolarContr.text = formatter.format(euro * euro_compra / dolar_compra);
+    libraContr.text = formatter.format(euro * euro_compra / libra_compra);
+    pesoContr.text = formatter.format(euro * euro_compra / peso_compra);
   }
 
   void _libraChanged(String text) {
@@ -56,56 +79,124 @@ Widget form(Exchange exchange){
       _clearAll();
       return;
     }
+
+    text = text.replaceAll('.','');
+    text = text.replaceAll(',','.');
+
     double libra = double.parse(text);
-    realController.text = (libra * libra_buy).toStringAsFixed(2);
-    dolarController.text = (libra * libra_buy / dollar_buy).toStringAsFixed(2);
-    euroController.text = (libra * libra_buy / euro_buy).toStringAsFixed(2);
+    realContr.text = formatter.format(libra * libra_compra);
+    dolarContr.text = formatter.format(libra * libra_compra / dolar_compra);
+    euroContr.text = formatter.format(libra * libra_compra / euro_compra);
+    pesoContr.text = formatter.format(libra * libra_compra / peso_compra);
+  }
+
+  void _pesoChanged(String text) {
+    if (text.isEmpty) {
+      _clearAll();
+      return;
+    }
+
+    text = text.replaceAll('.','');
+    text = text.replaceAll(',','.');
+
+    double peso = double.parse(text);
+    realContr.text = formatter.format(peso * peso_compra);
+    dolarContr.text = formatter.format(peso * peso_compra / dolar_compra);
+    euroContr.text = formatter.format(peso * peso_compra / euro_compra);
+    libraContr.text = formatter.format(peso * peso_compra / libra_compra);
   }
 
 
-  return SingleChildScrollView(
-      child: Column(
+  return Scaffold(
+      backgroundColor: Colors.black,
+      body: Column(
         children: <Widget>[
-          Icon(Icons.account_balance,
-              size: 150.0, color: Colors.amber),
+          SizedBox(height: 10),
+          simbolo(),
+          SizedBox(height: 30),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: buildTextField(
-                "Real", "R\$", realController, _realChanged),
+            child: textField("br", "R\$", realContr, _realChanged, true),
           ),
-          Divider(),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: buildTextField(
-                "Dollar", "US\$", dolarController, _dolarChanged),
+            child: textField("us", "US\$", dolarContr, _dolarChanged, true),
           ),
-          Divider(),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: buildTextField(
-                "Euro", "€", euroController, _euroChanged),
+            child: textField("eu", "€", euroContr, _euroChanged, true),
           ),
-          Divider(),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: buildTextField(
-                "Pound", "£", libraController, _libraChanged),
+            child: textField("gb", "£", libraContr, _libraChanged, true),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: textField("ar", "\$", pesoContr, _pesoChanged, true),
           ),
         ],
       ));
 }
 
-Widget buildTextField(
-    String label, String prefix, TextEditingController c, Function f) {
+Widget textField(String label, String prefix, TextEditingController c, Function f, bool enable) {
   return TextField(
+
+    enabled: enable,
     controller: c,
+    inputFormatters: [
+      WhitelistingTextInputFormatter.digitsOnly,
+      //fazer o formater para dinheiro
+      CurrencyInputFormatter()
+    ],
     decoration: InputDecoration(
-        labelText: label,
-        labelStyle: TextStyle(color: Colors.amber),
-        border: OutlineInputBorder(),
+        icon: bandeira(label),
+        labelStyle: TextStyle(color: Colors.white),
+        enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.white)
+        ),
         prefixText: prefix),
-    style: TextStyle(color: Colors.amber, fontSize: 25.0),
+    style: TextStyle(color: Colors.white, fontSize: 20.0),
     onChanged: f,
     keyboardType: TextInputType.numberWithOptions(decimal: true),
   );
+}
+
+Image bandeira(String imagem) {
+  AssetImage asset = AssetImage('assets/'+imagem+'.png');
+  Image image = Image(
+    image: asset,
+    width: 30,
+  );
+  return image;
+}
+
+Image simbolo() {
+  AssetImage asset = AssetImage('assets/cambio.png');
+  Image image = Image(
+    image: asset,
+    width: 150,
+    height: 150,
+  );
+  return image;
+}
+
+class CurrencyInputFormatter extends TextInputFormatter {
+
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+
+    if(newValue.selection.baseOffset == 0){
+      print(true);
+      return newValue;
+    }
+
+    double value = double.parse(newValue.text);
+
+    final formatter = NumberFormat("#,##0.00", "pt_BR");
+
+    String newText = formatter.format(value/100);
+
+    return newValue.copyWith(
+        text: newText,
+        selection: new TextSelection.collapsed(offset: newText.length));
+  }
 }

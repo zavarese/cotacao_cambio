@@ -1,12 +1,14 @@
 
 class Exchange  {
-  double dollar = 0;
+  double peso = 0;
+  double dolar = 0;
   double euro = 0;
   double libra = 0;
   String result = "";
 
   Exchange({
-    this.dollar,
+    this.peso,
+    this.dolar,
     this.euro,
     this.libra,
     this.result,
@@ -15,14 +17,15 @@ class Exchange  {
 
 Exchange getExchange (snapshot) {
 
-
-  double dollar = 0;
+  double peso = 0;
+  double dolar = 0;
   double euro = 0;
   double libra = 0;
   String result = "Ok";
 
-  dollar = snapshot.data["results"]["currencies"]["USD"]["buy"];
+  dolar = snapshot.data["results"]["currencies"]["USD"]["buy"];
   euro = snapshot.data["results"]["currencies"]["EUR"]["buy"];
   libra = snapshot.data["results"]["currencies"]["GBP"]["buy"];
-  return Exchange(dollar:dollar, euro: euro, libra: libra, result: result);
+  peso = snapshot.data["results"]["currencies"]["ARS"]["buy"];
+  return Exchange(peso: peso, dolar:dolar, euro: euro, libra: libra, result: result);
 }
