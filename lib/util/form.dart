@@ -154,7 +154,9 @@ Widget textField(String label, String prefix, TextEditingController c, Function 
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white)
         ),
-        prefixText: prefix),
+        prefixText: prefix,
+        prefixStyle: const TextStyle(color: Colors.greenAccent, fontSize: 20.0),
+    ),
     style: TextStyle(color: Colors.white, fontSize: 20.0),
     onChanged: f,
     keyboardType: TextInputType.numberWithOptions(decimal: true),
