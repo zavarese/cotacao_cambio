@@ -109,36 +109,44 @@ Widget form(Exchange exchange){
 
   return Scaffold(
       backgroundColor: Colors.black,
-      body: Column(
+      body: ListView(
         children: <Widget>[
-          SizedBox(height: 10),
-          simbolo(),
-          SizedBox(height: 30),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: textField("br", "R\$", realContr, _realChanged, true),
+          ListTile(
+            leading: SizedBox(height: 10),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: textField("us", "US\$", dolarContr, _dolarChanged, true),
+          ListTile(
+            leading: simbolo(),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: textField("eu", "€", euroContr, _euroChanged, true),
+          ListTile(
+            leading: SizedBox(height: 30),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: textField("gb", "£", libraContr, _libraChanged, true),
+          ListTile(
+            contentPadding: const EdgeInsets.all(8.0),
+            title: textField("br", "R\$", realContr, _realChanged, true, "Real"),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: textField("ar", "\$", pesoContr, _pesoChanged, true),
+          ListTile(
+            contentPadding: const EdgeInsets.all(8.0),
+            title: textField("us", "US\$", dolarContr, _dolarChanged, true, "Dolar"),
+          ),
+          ListTile(
+            contentPadding: const EdgeInsets.all(8.0),
+            title: textField("eu", "€", euroContr, _euroChanged, true, "Euro"),
+          ),
+          ListTile(
+            contentPadding: const EdgeInsets.all(8.0),
+            title: textField("gb", "£", libraContr, _libraChanged, true, "Libra"),
+          ),
+          ListTile(
+            contentPadding: const EdgeInsets.all(8.0),
+            title: textField("ar", "\$", pesoContr, _pesoChanged, true, "Peso"),
           ),
         ],
-      ));
+      ),
+    );
+
 }
 
-Widget textField(String label, String prefix, TextEditingController c, Function f, bool enable) {
+Widget textField(String label, String prefix, TextEditingController c, Function f, bool enable, String nome) {
   return TextField(
 
     enabled: enable,
@@ -150,6 +158,7 @@ Widget textField(String label, String prefix, TextEditingController c, Function 
     ],
     decoration: InputDecoration(
         icon: bandeira(label),
+        labelText: nome,
         labelStyle: TextStyle(color: Colors.white),
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white)
