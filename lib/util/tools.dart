@@ -11,19 +11,18 @@ Widget textField(String label, String prefix, TextEditingController c, Function 
     controller: c,
     inputFormatters: [
       WhitelistingTextInputFormatter.digitsOnly,
-      //fazer o formater para dinheiro
       CurrencyInputFormatter()
     ],
     decoration: InputDecoration(
       filled: true,
-      fillColor: Colors.grey,
+      fillColor: Colors.black,
       icon: bandeira(label),
       labelText: nome,
-      labelStyle: TextStyle(color: Colors.black),
+      labelStyle: TextStyle(color: Colors.white),
       prefixText: prefix,
-      prefixStyle: const TextStyle(color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.bold),
+      prefixStyle: const TextStyle(color: Colors.lightGreen, fontSize: 20.0, fontWeight: FontWeight.bold),
     ),
-    style: TextStyle(color: Colors.black, fontSize: 20.0),
+    style: TextStyle(color: Colors.white, fontSize: 20.0),
     onChanged: f,
     keyboardType: TextInputType.numberWithOptions(decimal: true),
   );
@@ -69,3 +68,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
   }
 }
 
+Color getColor(number) {
+  if (number >= 0) return Colors.blue;
+  if (number < 0) return Colors.red;
+}

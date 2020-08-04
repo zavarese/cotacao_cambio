@@ -176,38 +176,57 @@ Widget form(Exchange exchange){
           ListTile(
             title: textField("bc", "₿", bitcoinContr, _bitcoinChanged, true, "Bitcoin"),
           ),
-          ListTile(
-            title: CarouselSlider(
+          Divider(),
+          CarouselSlider(
               options: CarouselOptions(
-                  height: 30.0,
-                  autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 2),
+                height: 30.0,
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds: 1),
+                autoPlayCurve: Curves.linearToEaseOut,
+                enableInfiniteScroll: true,
+                autoPlayAnimationDuration: Duration(milliseconds: 1000),
               ),
               items: mapa.entries.map((i) {
                 return Builder(
                   builder: (BuildContext context) {
                     return Container(
                         width: MediaQuery.of(context).size.width,
-                        margin: EdgeInsets.symmetric(horizontal: 5.0),
+                        alignment: Alignment.center,
                         decoration: BoxDecoration(
-                            color: Colors.red
+                            color: Colors.black
                         ),
-                        child: Text(
-                          i.key.toString()+": "+i.value.toString(),
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 26.0,
-                              color: Colors.black,
-                          ),
+                        child: Row(
+                          children: <Widget>[
+                            Column(
+                              children:<Widget>[ Text(
+                                i.key.toString()+": ",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 26.0,
+                                  color: Colors.amber,
+                                ),
+                              ),
+                            ],
+                            ),
+                            Column(
+                              children:<Widget>[ Text(
+                                i.value.toString()+"%",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 26.0,
+                                  color: getColor(i.value.toDouble()),
+                                ),
+                              ),
+                              ],
+                            ),
+                        ]
                         )
                     );
                   },
                 );
               }).toList(),
             ),
-          ),
         ],
       ),
     );
 }
-
