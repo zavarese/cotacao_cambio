@@ -16,7 +16,7 @@ class HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text("Exchange"),
+        title: Text("Financial Indicators"),
         backgroundColor: Colors.deepOrangeAccent,
         centerTitle: true,
       ),

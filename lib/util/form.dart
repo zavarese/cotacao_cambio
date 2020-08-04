@@ -170,9 +170,7 @@ Widget form(Exchange exchange){
           ListTile(
             title: textField("bc", "₿", bitcoinContr, _bitcoinChanged, true, "Bitcoin"),
           ),
-          ListTile(
-
-          ),
+          ListTile(),
           ListTile(
             title: CarouselSlider(
               options: CarouselOptions(
@@ -205,6 +203,5 @@ Widget form(Exchange exchange){
         ],
       ),
     );
-
 }
 
