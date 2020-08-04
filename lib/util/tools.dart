@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
@@ -14,16 +15,18 @@ Widget textField(String label, String prefix, TextEditingController c, Function 
       CurrencyInputFormatter()
     ],
     decoration: InputDecoration(
+      filled: true,
+      fillColor: Colors.grey,
       icon: bandeira(label),
       labelText: nome,
-      labelStyle: TextStyle(color: Colors.white),
+      labelStyle: TextStyle(color: Colors.black),
       enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white)
+          borderSide: BorderSide(color: Colors.black),
       ),
       prefixText: prefix,
-      prefixStyle: const TextStyle(color: Colors.greenAccent, fontSize: 20.0),
+      prefixStyle: const TextStyle(color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.bold),
     ),
-    style: TextStyle(color: Colors.white, fontSize: 20.0),
+    style: TextStyle(color: Colors.black, fontSize: 20.0),
     onChanged: f,
     keyboardType: TextInputType.numberWithOptions(decimal: true),
   );

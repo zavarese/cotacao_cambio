@@ -146,12 +146,18 @@ Widget form(Exchange exchange){
 
 
   return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: ListView(
         children: <Widget>[
-          ListTile(
-            title: Center(child: simbolo()),
+          Container(
+            decoration: BoxDecoration (
+              color: Colors.black,
+            ),
+            child: 
+            Center(child: simbolo()),
+            padding: EdgeInsets.all(10),
           ),
+          ListTile(),
           ListTile(
             title: textField("br", "R\$", realContr, _realChanged, true, "Real"),
           ),
@@ -170,7 +176,6 @@ Widget form(Exchange exchange){
           ListTile(
             title: textField("bc", "₿", bitcoinContr, _bitcoinChanged, true, "Bitcoin"),
           ),
-          ListTile(),
           ListTile(
             title: CarouselSlider(
               options: CarouselOptions(
@@ -185,13 +190,14 @@ Widget form(Exchange exchange){
                         width: MediaQuery.of(context).size.width,
                         margin: EdgeInsets.symmetric(horizontal: 5.0),
                         decoration: BoxDecoration(
-                            color: Colors.white10
+                            color: Colors.red
                         ),
                         child: Text(
-                            i.key.toString()+": "+i.value.toString(),
+                          i.key.toString()+": "+i.value.toString(),
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 26.0,
-                              color: Colors.amber
+                              color: Colors.black,
                           ),
                         )
                     );

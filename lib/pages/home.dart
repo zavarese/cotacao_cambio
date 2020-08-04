@@ -14,10 +14,13 @@ class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Financial Indicators"),
-        backgroundColor: Colors.deepOrangeAccent,
+        title: Text(
+            "Financial Indicators",
+            style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.black,
         centerTitle: true,
       ),
       body: FutureBuilder(
@@ -28,7 +31,7 @@ class HomeState extends State<Home> {
                 return Center(
                     child: Text(
                       "Carregando...",
-                      style: TextStyle(color: Colors.deepOrange, fontSize: 25.0),
+                      style: TextStyle(color: Colors.black, fontSize: 25.0),
                       textAlign: TextAlign.center,
                     ));
               default:
@@ -36,7 +39,7 @@ class HomeState extends State<Home> {
                   return Center(
                       child: Text(
                         "Erro :(",
-                        style: TextStyle(color: Colors.deepOrangeAccent, fontSize: 25.0),
+                        style: TextStyle(color: Colors.black, fontSize: 25.0),
                         textAlign: TextAlign.center,
                       ));
                 } else {
