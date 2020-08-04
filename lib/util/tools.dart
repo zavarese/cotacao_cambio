@@ -20,9 +20,6 @@ Widget textField(String label, String prefix, TextEditingController c, Function 
       icon: bandeira(label),
       labelText: nome,
       labelStyle: TextStyle(color: Colors.black),
-      enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.black),
-      ),
       prefixText: prefix,
       prefixStyle: const TextStyle(color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.bold),
     ),
