@@ -16,13 +16,12 @@ class HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text("Câmbio de moedas"),
+        title: Text("Exchange"),
         backgroundColor: Colors.deepOrangeAccent,
         centerTitle: true,
       ),
       body: FutureBuilder(
           future: getData(),
-          //snapshot of the context/getData
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
