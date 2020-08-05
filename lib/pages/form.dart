@@ -176,7 +176,7 @@ Widget form(Exchange exchange){
             title: textField("ar", "\$", pesoContr, _pesoChanged, true, "Peso"),
           ),
           ListTile(
-            title: textField("bc", "₿", bitcoinContr, _bitcoinChanged, true, "Bitcoin"),
+            title: textField("bc", "B", bitcoinContr, _bitcoinChanged, true, "Bitcoin"),
           ),
           Divider(),
           CarouselSlider(
