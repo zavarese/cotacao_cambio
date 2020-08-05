@@ -27,10 +27,12 @@ Widget form(Exchange exchange){
                               'CAC': exchange.cac,
                               'NIKKEY': exchange.nikkey};
 
-  //var list = [];
-  //mapa.entries.forEach((e) => list.add(Bolsa(name: e.key.toString(), variacao: e.value.toDouble())));
-  //list = mapa.entries.map((e) => Bolsa(name: e.key.toString(), variacao: e.value.toDouble())).toList();
-
+  realContr.text = "0,00";
+  dolarContr.text = "0,00";
+  euroContr.text = "0,00";
+  libraContr.text = "0,00";
+  pesoContr.text = "0,00";
+  bitcoinContr.text = "0,00";
 
   void _clearAll() {
     realContr.text = "";
@@ -199,7 +201,7 @@ Widget form(Exchange exchange){
                           children: <Widget>[
                             Column(
                               children:<Widget>[ Text(
-                                i.key.toString()+": ",
+                                i.key.toString()+":  ",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 26.0,

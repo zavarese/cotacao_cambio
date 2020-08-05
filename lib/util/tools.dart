@@ -5,8 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 Widget textField(String label, String prefix, TextEditingController c, Function f, bool enable, String nome) {
-  return TextField(
-
+  return TextFormField(
     enabled: enable,
     controller: c,
     inputFormatters: [
