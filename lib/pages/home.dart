@@ -16,12 +16,9 @@ class HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text(
-            "Financial Indicators",
-            style: TextStyle(color: Colors.white),
-        ),
         backgroundColor: Colors.black,
-        centerTitle: true,
+        leading: Image.asset('assets/cambio.png'), // you can put Icon as well, it accepts any widget.
+        title: Text ("Financial Indicators"),
       ),
       body: FutureBuilder(
           future: getData(),

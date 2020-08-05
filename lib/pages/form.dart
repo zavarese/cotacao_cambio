@@ -151,14 +151,8 @@ Widget form(Exchange exchange){
       backgroundColor: Colors.white,
       body: ListView(
         children: <Widget>[
-          Container(
-            decoration: BoxDecoration (
-              color: Colors.black,
-            ),
-            child: 
-            Center(child: simbolo()),
-            padding: EdgeInsets.all(10),
-          ),
+
+          ListTile(),
           ListTile(),
           ListTile(
             title: textField("br", "R\$", realContr, _realChanged, true, "Real"),
@@ -178,7 +172,7 @@ Widget form(Exchange exchange){
           ListTile(
             title: textField("bc", "B", bitcoinContr, _bitcoinChanged, true, "Bitcoin"),
           ),
-          Divider(),
+          ListTile(),
           CarouselSlider(
               options: CarouselOptions(
                 height: 30.0,
