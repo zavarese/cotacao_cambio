@@ -151,9 +151,57 @@ Widget form(Exchange exchange){
       backgroundColor: Colors.white,
       body: ListView(
         children: <Widget>[
-
-          ListTile(),
-          ListTile(),
+          Padding(padding: const EdgeInsets.all(8.0),),
+          CarouselSlider(
+            options: CarouselOptions(
+              height: 30.0,
+              autoPlay: true,
+              autoPlayInterval: Duration(seconds: 1),
+              autoPlayCurve: Curves.linearToEaseOut,
+              enableInfiniteScroll: true,
+              autoPlayAnimationDuration: Duration(milliseconds: 1000),
+            ),
+            items: mapa.entries.map((i) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return Container(
+                      width: MediaQuery.of(context).size.width,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: Colors.black
+                      ),
+                      child: Row(
+                          children: <Widget>[
+                            Column(
+                              children:<Widget>[ Text(
+                                i.key.toString()+":  ",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 26.0,
+                                  color: Colors.amber,
+                                ),
+                              ),
+                              ],
+                            ),
+                            Column(
+                              children:<Widget>[ Text(
+                                i.value.toString()+"%",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 26.0,
+                                  color: getColor(i.value.toDouble()),
+                                ),
+                              ),
+                              ],
+                            ),
+                          ]
+                      )
+                  );
+                },
+              );
+            }).toList(),
+          ),
+          Padding(padding: const EdgeInsets.all(8.0),),
           ListTile(
             title: textField("br", "R\$", realContr, _realChanged, true, "Real"),
           ),
@@ -173,55 +221,7 @@ Widget form(Exchange exchange){
             title: textField("bc", "B", bitcoinContr, _bitcoinChanged, true, "Bitcoin"),
           ),
           ListTile(),
-          CarouselSlider(
-              options: CarouselOptions(
-                height: 30.0,
-                autoPlay: true,
-                autoPlayInterval: Duration(seconds: 1),
-                autoPlayCurve: Curves.linearToEaseOut,
-                enableInfiniteScroll: true,
-                autoPlayAnimationDuration: Duration(milliseconds: 1000),
-              ),
-              items: mapa.entries.map((i) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Container(
-                        width: MediaQuery.of(context).size.width,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Colors.black
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Column(
-                              children:<Widget>[ Text(
-                                i.key.toString()+":  ",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 26.0,
-                                  color: Colors.amber,
-                                ),
-                              ),
-                            ],
-                            ),
-                            Column(
-                              children:<Widget>[ Text(
-                                i.value.toString()+"%",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 26.0,
-                                  color: getColor(i.value.toDouble()),
-                                ),
-                              ),
-                              ],
-                            ),
-                        ]
-                        )
-                    );
-                  },
-                );
-              }).toList(),
-            ),
+
         ],
       ),
     );
