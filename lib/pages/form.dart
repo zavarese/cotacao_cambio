@@ -151,7 +151,7 @@ Widget form(Exchange exchange){
       backgroundColor: Colors.white,
       body: ListView(
         children: <Widget>[
-          Padding(padding: const EdgeInsets.all(8.0),),
+          Divider(),
           CarouselSlider(
             options: CarouselOptions(
               height: 30.0,
@@ -201,7 +201,7 @@ Widget form(Exchange exchange){
               );
             }).toList(),
           ),
-          Padding(padding: const EdgeInsets.all(8.0),),
+          ListTile(),
           ListTile(
             title: textField("br", "R\$", realContr, _realChanged, true, "Real"),
           ),
@@ -210,6 +210,7 @@ Widget form(Exchange exchange){
           ),
           ListTile(
             title: textField("eu", "€", euroContr, _euroChanged, true, "Euro"),
+
           ),
           ListTile(
             title: textField("gb", "£", libraContr, _libraChanged, true, "Pound"),
